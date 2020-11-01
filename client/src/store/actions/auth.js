@@ -8,7 +8,7 @@ export const logout = () => {
 
 export const getUser = () => async (dispatch) => {
 	try {
-		const res = await axios.get('/api/auth');
+		const res = await axios.get('/auth');
 
 		dispatch({
 			type: actionTypes.GET_USER,
@@ -21,7 +21,7 @@ export const getUser = () => async (dispatch) => {
 
 export const register = (formData) => async (dispatch) => {
 	try {
-		const res = await axios.post('/api/users', formData);
+		const res = await axios.post('/users', formData);
 		dispatch({
 			type: actionTypes.REGISTER_SUCCESS,
 			payload: { token: res.data.token }
@@ -35,7 +35,7 @@ export const register = (formData) => async (dispatch) => {
 
 export const login = (formData) => async (dispatch) => {
 	try {
-		const res = await axios.post('/api/auth', formData);
+		const res = await axios.post('/auth', formData);
 		dispatch({
 			type: actionTypes.LOGIN_SUCCESS,
 			payload: { token: res.data.token }

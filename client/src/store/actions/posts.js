@@ -4,7 +4,7 @@ import { setAlert } from './alert';
 
 export const createPost = (postData) => async (dispatch) => {
 	try {
-		const res = await axios.post('/api/posts/user/post', postData);
+		const res = await axios.post('/posts/user/post', postData);
 		dispatch({ type: actionTypes.CREATE_POST, payload: res.data });
 		dispatch(getPosts());
 	} catch (err) {
@@ -17,7 +17,7 @@ export const createPost = (postData) => async (dispatch) => {
 
 export const getPosts = () => async (dispatch) => {
 	try {
-		const res = await axios.get('/api/posts');
+		const res = await axios.get('/posts');
 		dispatch({ type: actionTypes.GET_POSTS, payload: res.data });
 	} catch (err) {
 		dispatch({
@@ -29,7 +29,7 @@ export const getPosts = () => async (dispatch) => {
 
 export const getPost = (post_id) => async (dispatch) => {
 	try {
-		const res = await axios.get(`/api/posts/user/post/${post_id}`);
+		const res = await axios.get(`/posts/user/post/${post_id}`);
 		dispatch({ type: actionTypes.GET_POST, payload: res.data });
 	} catch (err) {
 		dispatch({
@@ -41,7 +41,7 @@ export const getPost = (post_id) => async (dispatch) => {
 
 export const deletePost = (post_id) => async (dispatch) => {
 	try {
-		const res = await axios.delete(`/api/posts/user/post/${post_id}`);
+		const res = await axios.delete(`/posts/user/post/${post_id}`);
 		dispatch(getPosts());
 		dispatch(setAlert(res.data.msg, 'success'));
 	} catch (err) {
@@ -54,7 +54,7 @@ export const deletePost = (post_id) => async (dispatch) => {
 
 export const addLike = (post_id) => async (dispatch) => {
 	try {
-		await axios.put(`/api/posts/user/post/like/${post_id}`);
+		await axios.put(`/posts/user/post/like/${post_id}`);
 		dispatch(getPosts());
 	} catch (err) {
 		dispatch({
@@ -67,7 +67,7 @@ export const addLike = (post_id) => async (dispatch) => {
 
 export const removeLike = (post_id) => async (dispatch) => {
 	try {
-		await axios.delete(`/api/posts/user/post/like/${post_id}`);
+		await axios.delete(`/posts/user/post/like/${post_id}`);
 		dispatch(getPosts());
 	} catch (err) {
 		dispatch({
@@ -80,7 +80,7 @@ export const removeLike = (post_id) => async (dispatch) => {
 
 export const createComment = (post_id, commentData) => async (dispatch) => {
 	try {
-		const res = await axios.put(`/api/posts/user/post/comment/${post_id}`, commentData);
+		const res = await axios.put(`/posts/user/post/comment/${post_id}`, commentData);
 		dispatch({ type: actionTypes.GET_POST, payload: res.data });
 	} catch (err) {
 		dispatch({
@@ -93,7 +93,7 @@ export const createComment = (post_id, commentData) => async (dispatch) => {
 
 export const removeComment = (post_id, comment_id) => async (dispatch) => {
 	try {
-		const res = await axios.delete(`/api/posts/user/post/comment/${post_id}/${comment_id}`);
+		const res = await axios.delete(`/posts/user/post/comment/${post_id}/${comment_id}`);
 		dispatch({ type: actionTypes.GET_POST, payload: res.data });
 		dispatch(setAlert('Comment removed', 'success'));
 	} catch (err) {
