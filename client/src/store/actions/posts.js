@@ -7,6 +7,7 @@ export const createPost = (postData) => async (dispatch) => {
 		const res = await axios.post('/posts/user/post', postData);
 		dispatch({ type: actionTypes.CREATE_POST, payload: res.data });
 		dispatch(getPosts());
+		dispatch(setAlert('Post created', 'success'));
 	} catch (err) {
 		dispatch({
 			type: actionTypes.POST_ERROR,
@@ -82,6 +83,7 @@ export const createComment = (post_id, commentData) => async (dispatch) => {
 	try {
 		const res = await axios.put(`/posts/user/post/comment/${post_id}`, commentData);
 		dispatch({ type: actionTypes.GET_POST, payload: res.data });
+		dispatch(setAlert('Comment added', 'success'));
 	} catch (err) {
 		dispatch({
 			type: actionTypes.POST_ERROR,
