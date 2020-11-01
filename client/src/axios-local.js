@@ -3,7 +3,7 @@ import store from './store/store';
 import { logout } from './store/actions';
 
 const instance = axios.create({
-	baseURL: `${process.env.BASEURL || 'http://localhost:5000'}/api`
+	baseURL: `${process.env.BASEURL}/api`
 });
 
 instance.interceptors.response.use(
